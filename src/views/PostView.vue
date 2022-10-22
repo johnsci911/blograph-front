@@ -44,6 +44,7 @@
       <router-link :to="{ name: 'update', params: { id: $route.params.id } }">
         Update
       </router-link>
+      <button @click="deletePost">Delete Post</button>
     </div>
   </div>
 </template>
@@ -53,6 +54,11 @@ import gql from "graphql-tag";
 
 export default {
   name: "PostView",
+  date() {
+    return {
+      loading: false,
+    };
+  },
   apollo: {
     post: {
       query: gql`
@@ -68,6 +74,40 @@ export default {
           id: this.$route.params.id,
         };
       },
+    },
+  },
+  methods: {
+    deletePost() {
+      this.loading = true;
+
+      this.$apollo
+        .mutate({
+          mutation: gql`
+            mutation deletePost($id: ID!) {
+              deletePost(id: $id) {
+                id
+                title
+                body
+              }
+            }
+          `,
+          variables: {
+            id: this.$route.params.id,
+          },
+        })
+        .then(() => {
+          this.loading = false;
+
+          this.$router.push({ name: "home" });
+        })
+        .catch((error) => {
+          this.loading = false;
+
+          const key = Object.keys(
+            error.graphQLErrors[0].extensions.validation
+          )[0];
+          this.error = error.graphQLErrors[0].extensions.validation[key][0];
+        });
     },
   },
 };

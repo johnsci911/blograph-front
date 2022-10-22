@@ -386,6 +386,13 @@
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.3.tgz#781d360c282436494b32fe7d9f7f8e64b3118aa3"
   integrity sha512-fbF6oTd4sGGy0xjHPKAt+eS2CrxJ3+6gQ3FGcBoIJR2TLAyCkCyI8JqZNy+FeON0AhVgNJoUumVoZQjBFUqHkw==
 
+"@vue/apollo-components@^4.0.0-alpha.20":
+  version "4.0.0-alpha.20"
+  resolved "https://registry.yarnpkg.com/@vue/apollo-components/-/apollo-components-4.0.0-alpha.20.tgz#11b1488f92019025df2171704789bbc3fb6cbe58"
+  integrity sha512-39ppfxabMGx4rASvpZDvSxDMnLl9iJdvIIaNx/lRfXRgzvH4aUcUH5jwsuxtzTtLZ30FuxSw394yRI+smLiSHQ==
+  dependencies:
+    "@vue/apollo-option" "^4.0.0-alpha.20"
+
 "@vue/apollo-option@^4.0.0-alpha.20":
   version "4.0.0-alpha.20"
   resolved "https://registry.yarnpkg.com/@vue/apollo-option/-/apollo-option-4.0.0-alpha.20.tgz#469da22cd5925dc8d1b6089c087d0a89f39855ef"

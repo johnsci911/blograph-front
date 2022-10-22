@@ -40,6 +40,11 @@
         </template>
       </ApolloQuery>
     </div>
+    <div>
+      <router-link :to="{ name: 'update', params: { id: $route.params.id } }">
+        Update
+      </router-link>
+    </div>
   </div>
 </template>
 

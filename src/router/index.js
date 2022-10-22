@@ -27,6 +27,11 @@ const routes = [
     name: "create",
     component: () => import("../views/CreateView.vue"),
   },
+  {
+    path: "/post/:id/edit",
+    name: "update",
+    component: () => import("../views/UpdateView.vue"),
+  },
 ];
 
 const router = createRouter({

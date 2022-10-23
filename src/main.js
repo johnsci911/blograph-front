@@ -13,10 +13,22 @@ import { createApolloProvider } from "@vue/apollo-option";
 
 import VueApolloComponents from "@vue/apollo-components";
 
+function getHeaders() {
+  const headers = {};
+  const token = localStorage.getItem("apollo-token");
+
+  if (token) {
+    headers.authorization = `Bearer ${token}`;
+  }
+
+  return headers;
+}
+
 // HTTP connection to the API
 const httpLink = createHttpLink({
   // You should use an absolute URL here
   uri: "http://blograph.test/graphql",
+  headers: getHeaders(),
 });
 
 // Cache implementation

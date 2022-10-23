@@ -14,6 +14,7 @@
         </div>
       </div>
     </div>
+    <!--
     <div>
       <h2>Apollo Query Component</h2>
       <ApolloQuery
@@ -40,6 +41,7 @@
         </template>
       </ApolloQuery>
     </div>
+    -->
     <div>
       <router-link :to="{ name: 'update', params: { id: $route.params.id } }">
         Update

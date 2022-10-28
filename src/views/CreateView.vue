@@ -38,23 +38,14 @@ export default {
       this.$apollo
         .mutate({
           mutation: gql`
-            mutation createPostResolver(
-              $user_id: ID!
-              $title: String!
-              $body: String!
-            ) {
-              createPostResolver(
-                user_id: $user_id
-                title: $title
-                body: $body
-              ) {
+            mutation createPostResolver($title: String!, $body: String!) {
+              createPostResolver(title: $title, body: $body) {
                 id
                 body
               }
             }
           `,
           variables: {
-            user_id: 1,
             title: this.title,
             body: this.body,
           },

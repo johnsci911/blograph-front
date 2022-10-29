@@ -14,7 +14,23 @@
 import gql from "graphql-tag";
 
 export default {
+  watch: {
+    me(newMe) {
+      if (!newMe.is_admin) {
+        window.location.href = "/";
+      }
+    },
+  },
   apollo: {
+    me: {
+      query: gql`
+        query {
+          me {
+            is_admin
+          }
+        }
+      `,
+    },
     users: {
       query: gql`
         query {

@@ -1,13 +1,13 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/create">Create</router-link> |
-    <router-link to="/login">Login</router-link> |
-    <router-link to="/me">Me</router-link> |
-    <router-link to="/admin">Admin</router-link> |
-    <router-link to="/register">Register</router-link> |
-    <a href="#" @click.prevent="logout">Logout</a>
+    <router-link to="/">Home</router-link>
+    <router-link to="/about">About</router-link>
+    <router-link to="/create" v-if="loggedIn">Create</router-link>
+    <router-link to="/login" v-if="!loggedIn">Login</router-link>
+    <router-link v-if="loggedIn" to="/me">Me</router-link>
+    <router-link to="/admin" v-if="loggedIn && me?.is_admin">Admin</router-link>
+    <router-link to="/register" v-if="!loggedIn">Register</router-link>
+    <a href="#" v-if="loggedIn" @click.prevent="logout">Logout</a>
   </nav>
   <router-view />
 </template>
@@ -16,6 +16,22 @@
 import gql from "graphql-tag";
 
 export default {
+  computed: {
+    loggedIn() {
+      return localStorage.getItem("apollo-token");
+    },
+  },
+  apollo: {
+    me: {
+      query: gql`
+        query {
+          me {
+            is_admin
+          }
+        }
+      `,
+    },
+  },
   methods: {
     logout() {
       this.$apollo
@@ -56,6 +72,7 @@ nav {
 }
 
 nav a {
+  margin-right: 20px;
   font-weight: bold;
   color: #2c3e50;
 }

@@ -35,15 +35,31 @@ export default {
     post(newPost) {
       this.title = newPost.title;
       this.body = newPost.body;
+
+      if (newPost.user.id !== this.me.id) {
+        window.location.href = "/";
+      }
     },
   },
   apollo: {
+    me: {
+      query: gql`
+        query {
+          me {
+            id
+          }
+        }
+      `,
+    },
     post: {
       query: gql`
         query getPost($id: ID!) {
           post(id: $id) {
             title
             body
+            user {
+              id
+            }
           }
         }
       `,

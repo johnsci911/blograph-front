@@ -42,7 +42,7 @@
       </ApolloQuery>
     </div>
     -->
-    <div>
+    <div v-if="post && post.user.id === me.id">
       <router-link :to="{ name: 'update', params: { id: $route.params.id } }">
         Update
       </router-link>
@@ -62,12 +62,24 @@ export default {
     };
   },
   apollo: {
+    me: {
+      query: gql`
+        query {
+          me {
+            id
+          }
+        }
+      `,
+    },
     post: {
       query: gql`
         query getPost($id: ID!) {
           post(id: $id) {
             title
             body
+            user {
+              id
+            }
           }
         }
       `,

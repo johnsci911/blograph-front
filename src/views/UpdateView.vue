@@ -83,6 +83,8 @@ export default {
         .catch((error) => {
           this.loading = false;
 
+          console.log(error);
+
           const key = Object.keys(
             error.graphQLErrors[0].extensions.validation
           )[0];

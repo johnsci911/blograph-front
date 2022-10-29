@@ -5,6 +5,7 @@
     <router-link to="/create">Create</router-link> |
     <router-link to="/login">Login</router-link> |
     <router-link to="/me">Me</router-link> |
+    <router-link to="/admin">Admin</router-link> |
     <router-link to="/register">Register</router-link> |
     <a href="#" @click.prevent="logout">Logout</a>
   </nav>
